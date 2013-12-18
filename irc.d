@@ -14,41 +14,19 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-module mywormnet2;
+module irc;
 
-import std.getopt;
+import ae.net.irc.server;
 
-import ae.net.asockets;
-import ae.sys.log;
-
-import irc;
-
-class WormNETServer
+class WormNETIrcServer : IrcServer
 {
-	WormNETIrcServer irc;
-	Logger log;
-
 	this()
 	{
-		irc = new WormNETIrcServer;
+		password = "ELSILRACLIHP";
+		serverVersion ~= "/MyWormNET2";
+		addressMask = "no.address.for.you";
+		staticChannels = true;
+		foreach (channel; ["#Welcome"])
+			createChannel(channel);
 	}
-
-	void start()
-	{
-		irc.log = log;
-		irc.listen();
-	}
-}
-
-void main(string[] args)
-{
-	bool quiet;
-	getopt(args,
-		"q", &quiet,
-	);
-
-	auto server = new WormNETServer();
-	server.log = quiet ? new FileLogger("MyWormNET2") : new FileAndConsoleLogger("MyWormNET2");
-	server.start();
-	socketManager.loop();
 }

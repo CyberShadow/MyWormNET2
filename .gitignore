@@ -10,3 +10,4 @@
 *.mem
 *.suo
 mywormnet2
+/logs/
