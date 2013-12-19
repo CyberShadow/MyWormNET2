@@ -119,7 +119,7 @@ class WormNETHttpServer
 							games
 								.filter!(game => game.channel == parameters.aaGet("Channel"))
 								.map!(game => "<GAME %s %s %s %d %d %d %d %d><BR>\r\n".format(
-									game.name, game.host, game.address, game.location, 1 /* open */, password is null ? 0 : 1, game.id, game.type
+									game.name, game.host, game.address, game.location, 1 /* open */, game.password ? 1 : 0, game.id, game.type
 								))
 								.join() ~
 							"<GAMELISTEND>\r\n";
