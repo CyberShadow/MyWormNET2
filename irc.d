@@ -30,6 +30,7 @@ class WormNETIrcServer : IrcServer
 		password = "ELSILRACLIHP";
 		serverVersion ~= "/MyWormNET2";
 		addressMask = configuration.irc.addressMask;
+		operPassword = configuration.irc.operPassword;
 		staticChannels = true;
 		motd = "motd.txt".readText.splitLines;
 		foreach (name, options; configuration.channels)
