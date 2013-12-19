@@ -17,35 +17,49 @@
 module mywormnet2;
 
 import std.getopt;
+import std.stdio;
 
 import ae.net.asockets;
 import ae.sys.log;
+import ae.utils.sini;
 
+import common;
+import http;
 import irc;
+
+alias common.configuration configuration; // 314
 
 class WormNETServer
 {
+	WormNETHttpServer http;
 	WormNETIrcServer irc;
 	Logger log;
 
 	this()
 	{
+		http = new WormNETHttpServer;
 		irc = new WormNETIrcServer;
 	}
 
 	void start()
 	{
 		irc.log = log;
-		irc.listen();
+		irc.listen(configuration.irc.port);
+
+		http.server.log = log;
+		http.server.listen(configuration.http.port);
 	}
 }
 
+bool quiet;
+
 void main(string[] args)
 {
-	bool quiet;
 	getopt(args,
 		"q", &quiet,
 	);
+
+	configuration = File("mywormnet2.ini").byLine.parseStructuredIni!Configuration;
 
 	auto server = new WormNETServer();
 	server.log = quiet ? new FileLogger("MyWormNET2") : new FileAndConsoleLogger("MyWormNET2");

@@ -14,28 +14,33 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-module irc;
+module common;
 
-import std.file;
-import std.string;
-
-import ae.net.irc.server;
-
-import common;
-
-class WormNETIrcServer : IrcServer
+struct Configuration
 {
-	this()
+	struct Channel
 	{
-		password = "ELSILRACLIHP";
-		serverVersion ~= "/MyWormNET2";
-		addressMask = configuration.irc.addressMask;
-		staticChannels = true;
-		motd = "motd.txt".readText.splitLines;
-		foreach (name, options; configuration.channels)
-		{
-			auto channel = createChannel("#" ~ name);
-			channel.topic = "%02d %s".format(options.icon, options.topic);
-		}
+		string topic;
+		int icon;
+		string scheme;
 	}
+	Channel[string] channels;
+
+	struct HTTP
+	{
+		ushort port = 80;
+	}
+	HTTP http;
+
+	struct IRC
+	{
+		string hostname;
+		ushort port = 6667;
+		string IP;
+		string addressMask;
+		string operPassword;
+	}
+	IRC irc;
 }
+
+Configuration configuration;

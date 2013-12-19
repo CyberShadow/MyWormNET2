@@ -1,0 +1,138 @@
+/*  Copyright (C) 2013  Vladimir Panteleev <vladimir@thecybershadow.net>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+module http;
+
+import std.algorithm;
+import std.array;
+import std.exception;
+import std.conv;
+import std.file;
+import std.string;
+
+import ae.net.http.server;
+import ae.net.http.responseex;
+import ae.utils.array;
+
+import common;
+
+alias std.string.indexOf indexOf;
+
+class WormNETHttpServer
+{
+	HttpServer server;
+
+	this()
+	{
+		server = new HttpServer;
+		server.handleRequest = &onRequest;
+	}
+
+	struct Game
+	{
+		int id;
+		string name;
+		string host;
+		string address;
+		string channel;
+		string location;
+	}
+	Game[] games;
+	int gameCounter;
+
+	void onRequest(HttpRequest request, HttpServerConnection conn)
+	{
+		auto response = new HttpResponseEx();
+
+		try
+		{
+			auto pathStr = request.resource;
+			enforce(pathStr.startsWith('/'), "Invalid path");
+			string[string] parameters;
+			if (pathStr.indexOf('?') >= 0)
+			{
+				auto p = pathStr.indexOf('?');
+				parameters = decodeUrlParameters(pathStr[p+1..$]);
+				pathStr = pathStr[0..p];
+			}
+			auto path = pathStr[1..$].split("/");
+
+			if (path.length == 2 && path[0] == "wormageddonweb")
+			{
+				string html = "<NOTHING>";
+				switch (path[1])
+				{
+					case "Login.asp":
+						html = "<CONNECT %s>".format(configuration.irc.IP ? configuration.irc.IP : conn.conn.localAddress.toAddrString);
+						if ("DynMotd.html".exists)
+							html ~= "\r\n<MOTD\r\n%s\r\n</MOTD>".format("DynMotd.html".readText);
+						break;
+					case "RequestChannelScheme.asp":
+						html = "<SCHEME=%s>".format(configuration.channels.aaGet(parameters.aaGet("Channel")).scheme);
+						break;
+					case "Game.asp":
+						switch (parameters.aaGet("Cmd"))
+						{
+							case "Create":
+								gameCounter++;
+								games ~= Game(
+									gameCounter,
+									parameters.aaGet("Name")[0..min($, 29)],
+									parameters.aaGet("Nick"),
+									parameters.aaGet("HostIP"),
+									parameters.aaGet("Chan"),
+									parameters.aaGet("Loc"),
+								);
+								response.headers["SetGameId"] = ": %d".format(gameCounter);
+								break;
+							case "Close":
+							{
+								auto id = parameters.aaGet("GameID").to!int;
+								games = games.filter!(game => game.id != id).array;
+								break;
+							}
+							case "Failed":
+								break;
+							default:
+								return conn.sendResponse(response.writeError(HttpStatusCode.BadRequest));
+						}
+						break;
+					case "GameList.asp":
+						html = "<GAMELISTSTART>\r\n" ~
+							games
+								.filter!(game => game.channel == parameters.aaGet("Channel"))
+								.map!(game => "<GAME %s %s %s %d %d %d %d %d><BR>\r\n".format(
+									game.name, game.host, game.address, game.location, 1, 0, game.id, 0
+								))
+								.join() ~
+							"<GAMELISTEND>\r\n";
+						break;
+					case "UpdatePlayerInfo.asp":
+						break;
+					default:
+						return conn.sendResponse(response.writeError(HttpStatusCode.NotFound));
+				}
+				return conn.sendResponse(response.serveData(html));
+			}
+			else
+				return conn.sendResponse(response.serveFile(pathStr[1..$], "wwwroot/"));
+		}
+		catch (FileException e)
+			return conn.sendResponse(response.writeError(HttpStatusCode.NotFound           , e.msg));
+		catch (Exception e)
+			return conn.sendResponse(response.writeError(HttpStatusCode.InternalServerError, e.toString));
+	}
+}
