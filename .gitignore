@@ -1,3 +1,4 @@
+# Temporary/intermediate/output files
 *.exe
 *.obj
 *.o
@@ -10,4 +11,11 @@
 *.mem
 *.suo
 mywormnet2
+
+# Logs
 /logs/
+
+# Local configuration
+mywormnet2.ini
+news.html
+motd.txt

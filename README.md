@@ -28,7 +28,8 @@ See the [D website](http://dlang.org/download.html) to get the version number fo
 
 ## Configure MyWormNET2
 
-See `mywormnet2.ini` and its comments to configure MyWormNET2.
+Copy the file `mywormnet2-sample.ini` to `mywormnet2.ini`, and edit it accordingly.
+See the comments for explanations of what the various options do.
 
 ## Compile and run MyWormNET2
 

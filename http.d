@@ -79,8 +79,8 @@ class WormNETHttpServer
 				{
 					case "Login.asp":
 						html = "<CONNECT %s>".format(configuration.irc.IP ? configuration.irc.IP : conn.conn.localAddress.toAddrString);
-						if ("DynMotd.html".exists)
-							html ~= "\r\n<MOTD\r\n%s\r\n</MOTD>".format("DynMotd.html".readText);
+						if (configuration.http.newsFileName.exists)
+							html ~= "\r\n<MOTD\r\n%s\r\n</MOTD>".format(configuration.http.newsFileName.readText);
 						break;
 					case "RequestChannelScheme.asp":
 						html = "<SCHEME=%s>".format(configuration.channels.aaGet(parameters.aaGet("Channel")).scheme);

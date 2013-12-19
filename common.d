@@ -18,20 +18,6 @@ module common;
 
 struct Configuration
 {
-	struct Channel
-	{
-		string topic;
-		int icon;
-		string scheme;
-	}
-	Channel[string] channels;
-
-	struct HTTP
-	{
-		ushort port = 80;
-	}
-	HTTP http;
-
 	struct IRC
 	{
 		string hostname;
@@ -39,8 +25,24 @@ struct Configuration
 		string IP;
 		string addressMask;
 		string operPassword;
+		string motdFileName;
 	}
 	IRC irc;
+
+	struct HTTP
+	{
+		ushort port = 80;
+		string newsFileName;
+	}
+	HTTP http;
+
+	struct Channel
+	{
+		string topic;
+		int icon;
+		string scheme;
+	}
+	Channel[string] channels;
 }
 
 Configuration configuration;

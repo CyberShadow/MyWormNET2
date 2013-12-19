@@ -32,7 +32,8 @@ class WormNETIrcServer : IrcServer
 		addressMask = configuration.irc.addressMask;
 		operPassword = configuration.irc.operPassword;
 		staticChannels = true;
-		motd = "motd.txt".readText.splitLines;
+		if (configuration.irc.motdFileName)
+			motd = configuration.irc.motdFileName.readText.splitLines;
 		foreach (name, options; configuration.channels)
 		{
 			auto channel = createChannel("#" ~ name);
