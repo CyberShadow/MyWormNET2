@@ -47,8 +47,10 @@ class WormNETHttpServer
 		string name;
 		string host;
 		string address;
+		string password;
 		string channel;
 		string location;
+		string type;
 	}
 	Game[] games;
 	int gameCounter;
@@ -93,8 +95,10 @@ class WormNETHttpServer
 									parameters.aaGet("Name")[0..min($, 29)],
 									parameters.aaGet("Nick"),
 									parameters.aaGet("HostIP"),
+									parameters.get("Pwd", null),
 									parameters.aaGet("Chan"),
 									parameters.aaGet("Loc"),
+									parameters.aaGet("Type"),
 								);
 								response.headers["SetGameId"] = ": %d".format(gameCounter);
 								break;
@@ -115,7 +119,7 @@ class WormNETHttpServer
 							games
 								.filter!(game => game.channel == parameters.aaGet("Channel"))
 								.map!(game => "<GAME %s %s %s %d %d %d %d %d><BR>\r\n".format(
-									game.name, game.host, game.address, game.location, 1, 0, game.id, 0
+									game.name, game.host, game.address, game.location, 1 /* open */, password is null ? 0 : 1, game.id, game.type
 								))
 								.join() ~
 							"<GAMELISTEND>\r\n";
