@@ -6,15 +6,25 @@ This is MyWormNET2, a [WormNET](http://worms2d.info/WormNET) server written in t
 
 You can either:
 
-a) download and unpack [the zip file](https://github.com/CyberShadow/MyWormNET2/archive/master.zip). Command-line instructions:
+a) clone the git repository (recommended, if you have or can install [git](http://git-scm.com/):
+
+    git clone --recursive https://github.com/CyberShadow/MyWormNET2
+    cd MyWormNET2
+
+b) or, you could download and unpack the source code using zip files:
+   [MyWormNET2](https://github.com/CyberShadow/MyWormNET2/archive/master.zip) and the [ae library](https://github.com/CyberShadow/ae/archive/master.zip).
+   Unpack `ae-master.zip` to the empty `ae` directory in `MyWormNET2-master.zip`.
+   Command-line instructions:
 
     wget https://github.com/CyberShadow/MyWormNET2/archive/master.zip
     unzip master.zip
-    mv MyWormNET2-master MyWormNET2-master
-
-b) or, you could clone the git repository:
-
-    git clone https://github.com/CyberShadow/MyWormNET2
+    mv MyWormNET2-master MyWormNET2
+    cd MyWormNET2
+    rmdir ae
+    wget https://github.com/CyberShadow/ae/archive/master.zip
+    unzip master.zip
+    rm master.zip
+    mv ae-master ae
 
 ## Install D
 
