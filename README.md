@@ -6,25 +6,32 @@ This is MyWormNET2, a [WormNET](http://worms2d.info/WormNET) server written in t
 
 You can either:
 
-a) clone the git repository (recommended, if you have or can install [git](http://git-scm.com/):
+a) clone the git repository (recommended, if you have or can install [git](http://git-scm.com/)):
 
     git clone --recursive https://github.com/CyberShadow/MyWormNET2
     cd MyWormNET2
 
 b) or, you could download and unpack the source code using zip files:
-   [MyWormNET2](https://github.com/CyberShadow/MyWormNET2/archive/master.zip) and the [ae library](https://github.com/CyberShadow/ae/archive/master.zip).
-   Unpack `ae-master.zip` to the empty `ae` directory in `MyWormNET2-master.zip`.
-   Command-line instructions:
 
-    wget https://github.com/CyberShadow/MyWormNET2/archive/master.zip
-    unzip master.zip
-    mv MyWormNET2-master MyWormNET2
+   1. Download [MyWormNET2](https://github.com/CyberShadow/MyWormNET2/archive/2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7.zip)
+      and the [ae library](https://github.com/CyberShadow/ae/archive/e22dcd2119b4e83196246b09a55b7740eca2916e.zip).
+   2. Unpack `MyWormNET2-2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7.zip` and rename the
+      `MyWormNET2-e22dcd2119b4e83196246b09a55b7740eca2916e` directory to `MyWormNET2`.
+   3. Unpack `ae-e22dcd2119b4e83196246b09a55b7740eca2916e.zip` and move the contents of the
+      `ae-e22dcd2119b4e83196246b09a55b7740eca2916e` directory to the empty `MyWormNET2\ae` directory.
+
+Command-line instructions:
+
+    wget https://github.com/CyberShadow/MyWormNET2/archive/2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7.zip
+    unzip 2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7.zip
+    rm 2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7.zip
+    mv MyWormNET2-2372f5ab3726ee1bed762c3bb2b430ea7b7f72b7 MyWormNET2
     cd MyWormNET2
     rmdir ae
-    wget https://github.com/CyberShadow/ae/archive/master.zip
-    unzip master.zip
-    rm master.zip
-    mv ae-master ae
+    wget https://github.com/CyberShadow/ae/archive/e22dcd2119b4e83196246b09a55b7740eca2916e.zip
+    unzip e22dcd2119b4e83196246b09a55b7740eca2916e.zip
+    rm e22dcd2119b4e83196246b09a55b7740eca2916e.zip
+    mv ae-e22dcd2119b4e83196246b09a55b7740eca2916e ae
 
 ## Install D
 
