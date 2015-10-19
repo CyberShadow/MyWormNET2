@@ -1,4 +1,4 @@
-/*  Copyright (C) 2013  Vladimir Panteleev <vladimir@thecybershadow.net>
+/*  Copyright (C) 2013, 2015  Vladimir Panteleev <vladimir@thecybershadow.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -63,7 +63,7 @@ class WormNETHttpServer
 		{
 			auto pathStr = request.resource;
 			enforce(pathStr.startsWith('/'), "Invalid path");
-			string[string] parameters;
+			UrlParameters parameters;
 			if (pathStr.indexOf('?') >= 0)
 			{
 				auto p = pathStr.indexOf('?');
@@ -78,7 +78,7 @@ class WormNETHttpServer
 				switch (path[1])
 				{
 					case "Login.asp":
-						html = "<CONNECT %s>".format(configuration.irc.IP ? configuration.irc.IP : conn.conn.localAddress.toAddrString);
+						html = "<CONNECT %s>".format(configuration.irc.IP ? configuration.irc.IP : conn.tcp.localAddress.toAddrString);
 						if (configuration.http.newsFileName.exists)
 							html ~= "\r\n<MOTD>\r\n%s\r\n</MOTD>".format(configuration.http.newsFileName.readText);
 						break;
