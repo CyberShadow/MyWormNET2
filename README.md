@@ -2,6 +2,16 @@ This is MyWormNET2, a [WormNET](http://worms2d.info/WormNET) server written in t
 
 # Setup instructions
 
+## Install D
+
+You'll need a D compiler to compile MyWormNET2.
+
+For Windows, OS X, and Debian/RPM-based Linux distributions, you can use one of the installers/packages from the [D website](http://dlang.org/download.html).
+
+On POSIX systems, you can also use the install script:
+
+    curl -fsS https://dlang.org/install.sh | bash -s dmd
+
 ## Download the source code
 
 You can either:
@@ -32,16 +42,6 @@ Command-line instructions:
     unzip 9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip
     rm 9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip
     mv ae-9a790b1081b30c765eccc5d83acf1af5b6fc51d4 ae
-
-## Install D
-
-You'll need a D compiler to compile MyWormNET2.
-
-For Windows, OS X, and Debian/RPM-based Linux distributions, you can use one of the installers/packages from the [D website](http://dlang.org/download.html).
-
-On POSIX systems, you can also use the install script:
-
-    curl -fsS https://dlang.org/install.sh | bash -s dmd
 
 ## Configure MyWormNET2
 
