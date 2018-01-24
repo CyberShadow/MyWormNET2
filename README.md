@@ -39,9 +39,9 @@ You'll need a D compiler to compile MyWormNET2.
 
 For Windows, OS X, and Debian/RPM-based Linux distributions, you can use one of the installers/packages from the [D website](http://dlang.org/download.html).
 
-If you need to run MyWormNET2 on a Linux system and don't have root access, you can use [DVM](https://bitbucket.org/doob/dvm) to install DMD to your home directory.
-After installing DVM (see instructions on DVM's project page), use the `dvm install 2.068.2` command to install a D compiler, then `dvm use 2.068.2 -d` to activate it.
-See the [D website](http://dlang.org/download.html) to get the version number for the latest D compiler.
+On POSIX systems, you can also use the install script:
+
+    curl -fsS https://dlang.org/install.sh | bash -s dmd
 
 ## Configure MyWormNET2
 
