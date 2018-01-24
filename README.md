@@ -35,25 +35,25 @@ This will fetch MyWormNET2 and its dependencies:
 
 You can also download and unpack the source code using zip files (not recommended):
 
-   1. Download [MyWormNET2](https://github.com/CyberShadow/MyWormNET2/archive/b26ee1eef06722c84b562da943b25f55d17c1247.zip)
-      and the [ae library](https://github.com/CyberShadow/ae/archive/9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip).
-   2. Unpack `MyWormNET2-b26ee1eef06722c84b562da943b25f55d17c1247.zip` and rename the
-      `MyWormNET2-9a790b1081b30c765eccc5d83acf1af5b6fc51d4` directory to `MyWormNET2`.
-   3. Unpack `ae-9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip` and move the contents of the
-      `ae-9a790b1081b30c765eccc5d83acf1af5b6fc51d4` directory to the empty `MyWormNET2\ae` directory.
+   1. Download [MyWormNET2](https://github.com/CyberShadow/MyWormNET2/archive/v1.0.0.zip)
+      and the [ae library](https://github.com/CyberShadow/ae/archive/v0.0.2097.zip).
+   2. Unpack `MyWormNET2-v1.0.0.zip` and rename the
+      `MyWormNET2-v0.0.2097` directory to `MyWormNET2`.
+   3. Unpack `ae-v0.0.2097.zip` and move the contents of the
+      `ae-v0.0.2097` directory to the empty `MyWormNET2\ae` directory.
 
 Command-line instructions (again, not recommended):
 
-    wget https://github.com/CyberShadow/MyWormNET2/archive/b26ee1eef06722c84b562da943b25f55d17c1247.zip
-    unzip b26ee1eef06722c84b562da943b25f55d17c1247.zip
-    rm b26ee1eef06722c84b562da943b25f55d17c1247.zip
-    mv MyWormNET2-b26ee1eef06722c84b562da943b25f55d17c1247 MyWormNET2
+    wget https://github.com/CyberShadow/MyWormNET2/archive/v1.0.0.zip
+    unzip v1.0.0.zip
+    rm v1.0.0.zip
+    mv MyWormNET2-v1.0.0 MyWormNET2
     cd MyWormNET2
     rmdir ae
-    wget https://github.com/CyberShadow/ae/archive/9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip
-    unzip 9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip
-    rm 9a790b1081b30c765eccc5d83acf1af5b6fc51d4.zip
-    mv ae-9a790b1081b30c765eccc5d83acf1af5b6fc51d4 ae
+    wget https://github.com/CyberShadow/ae/archive/v0.0.2097.zip
+    unzip v0.0.2097.zip
+    rm v0.0.2097.zip
+    mv ae-v0.0.2097 ae
 
 ## Configure MyWormNET2
 
