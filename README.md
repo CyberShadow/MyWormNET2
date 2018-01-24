@@ -82,3 +82,9 @@ To build and run MyWormNET2 with `rdmd`, run:
 If you'd like to just build an executable, use `--build-only`:
 
     rdmd --build-only mywormnet2
+
+## Configure Worms Armageddon
+
+In order to connect to your MyWormNET2 server, players need to customize their `ServerList.htm` file. The file is found by default at: `graphics\ServerLobby\ServerList.htm`.
+
+Alternatively, you could get your server listed in the [WormNET server list](http://worms.thecybershadow.net/wormnet/).
