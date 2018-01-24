@@ -1,0 +1,17 @@
+name "mywormnet2"
+description "A Worms Armageddon WormNET server"
+authors "Vladimir Panteleev <vladimir@thecybershadow.net>"
+homepage "https://github.com/CyberShadow/MyWormNET2"
+license "AGPL-3"
+
+---------------------------
+
+targetType "executable"
+
+# https://github.com/dlang/dub/issues/825
+sourceFiles "common.d"
+sourceFiles "http.d"
+sourceFiles "irc.d"
+sourceFiles "mywormnet2.d"
+
+dependency "ae" version="==0.0.1969"
