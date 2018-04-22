@@ -1,4 +1,4 @@
-/*  Copyright (C) 2013  Vladimir Panteleev <vladimir@thecybershadow.net>
+/*  Copyright (C) 2013, 2018  Vladimir Panteleev <vladimir@thecybershadow.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -21,6 +21,7 @@ struct Configuration
 	struct IRC
 	{
 		string hostname;
+		string address = null;
 		ushort port = 6667;
 		string IP;
 		string addressMask;
@@ -31,6 +32,7 @@ struct Configuration
 
 	struct HTTP
 	{
+		string address = null;
 		ushort port = 80;
 		string newsFileName;
 	}

@@ -1,4 +1,4 @@
-/*  Copyright (C) 2013  Vladimir Panteleev <vladimir@thecybershadow.net>
+/*  Copyright (C) 2013, 2018  Vladimir Panteleev <vladimir@thecybershadow.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -44,10 +44,10 @@ class WormNETServer
 	void start()
 	{
 		irc.log = log;
-		irc.listen(configuration.irc.port);
+		irc.listen(configuration.irc.port, configuration.irc.address);
 
 		http.server.log = log;
-		http.server.listen(configuration.http.port);
+		http.server.listen(configuration.http.port, configuration.http.address);
 	}
 }
 
