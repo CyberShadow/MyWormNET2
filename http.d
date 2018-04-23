@@ -121,7 +121,7 @@ class WormNETHttpServer
 						html = "<GAMELISTSTART>\r\n" ~
 							games
 								.filter!(game => game.channel == parameters.aaGet("Channel"))
-								.map!(game => "<GAME %s %s %s %d %d %d %d %d><BR>\r\n".format(
+								.map!(game => "<GAME %s %s %s %s %d %d %d %s><BR>\r\n".format(
 									game.name, game.host, game.address, game.location, 1 /* open */, game.password ? 1 : 0, game.id, game.type
 								))
 								.join() ~
