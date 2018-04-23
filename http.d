@@ -16,8 +16,11 @@
 
 module http;
 
+import core.time;
+
 import std.algorithm;
 import std.array;
+import std.datetime : SysTime;
 import std.exception;
 import std.conv;
 import std.file;
@@ -51,13 +54,17 @@ class WormNETHttpServer
 		string channel;
 		string location;
 		string type;
+		SysTime created;
 	}
 	Game[] games;
 	int gameCounter;
 
+	enum gameTimeout = 5.minutes;
+
 	void onRequest(HttpRequest request, HttpServerConnection conn)
 	{
 		auto response = new HttpResponseEx();
+		auto now = Clock.currTime();
 
 		try
 		{
@@ -102,6 +109,7 @@ class WormNETHttpServer
 									parameters.aaGet("Chan"),
 									parameters.aaGet("Loc"),
 									parameters.aaGet("Type"),
+									now,
 								);
 								response.headers["SetGameId"] = ": %d".format(gameCounter);
 								break;
@@ -118,6 +126,7 @@ class WormNETHttpServer
 						}
 						break;
 					case "GameList.asp":
+						games = games.filter!(game => now - game.created < gameTimeout).array;
 						html = "<GAMELISTSTART>\r\n" ~
 							games
 								.filter!(game => game.channel == parameters.aaGet("Channel"))
