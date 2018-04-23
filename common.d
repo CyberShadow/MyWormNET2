@@ -34,6 +34,7 @@ struct Configuration
 	{
 		string address = null;
 		ushort port = 80;
+		string connectPort = null;
 		string newsFileName;
 	}
 	HTTP http;
