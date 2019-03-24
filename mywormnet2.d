@@ -51,18 +51,12 @@ class WormNETServer
 	}
 }
 
-bool quiet;
-
-void main(string[] args)
+void main()
 {
-	getopt(args,
-		"q", &quiet,
-	);
-
 	configuration = File("mywormnet2.ini").byLine.parseStructuredIni!Configuration;
 
 	auto server = new WormNETServer();
-	server.log = quiet ? new FileLogger("MyWormNET2") : new FileAndConsoleLogger("MyWormNET2");
+	server.log = createLogger("MyWormNET2");
 	server.start();
 	socketManager.loop();
 }
