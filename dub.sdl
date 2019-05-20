@@ -14,4 +14,4 @@ sourceFiles "http.d"
 sourceFiles "irc.d"
 sourceFiles "mywormnet2.d"
 
-dependency "ae" version="==0.0.2409"
+dependency "ae" version="==0.0.2410"
