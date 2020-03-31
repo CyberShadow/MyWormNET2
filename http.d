@@ -1,4 +1,4 @@
-/*  Copyright (C) 2013, 2015, 2018  Vladimir Panteleev <vladimir@thecybershadow.net>
+/*  Copyright (C) 2013, 2015, 2018, 2020  Vladimir Panteleev <vladimir@thecybershadow.net>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@ import core.time;
 
 import std.algorithm;
 import std.array;
-import std.datetime : SysTime;
+import std.datetime : SysTime, Clock;
 import std.exception;
 import std.conv;
 import std.file;
