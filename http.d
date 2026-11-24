@@ -28,6 +28,7 @@ import std.string;
 
 import ae.net.http.server;
 import ae.net.http.responseex;
+import ae.net.endpoint : SocketEndpoint;
 import ae.utils.array;
 
 import common;
@@ -86,7 +87,7 @@ class WormNETHttpServer
 				{
 					case "Login.asp":
 						html = "<CONNECT %s%s>".format(
-							configuration.irc.IP ? configuration.irc.IP : conn.tcp.localAddress.toAddrString,
+							configuration.irc.IP ? configuration.irc.IP : conn.localEndpoint.to!SocketEndpoint.address.toAddrString,
 							configuration.http.connectPort ? ":" ~ configuration.http.connectPort : "",
 						);
 						if (configuration.http.newsFileName.exists)
