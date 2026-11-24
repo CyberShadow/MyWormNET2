@@ -123,7 +123,7 @@ class WormNETHttpServer
 							case "Failed":
 								break;
 							default:
-								return conn.sendResponse(response.writeError(HttpStatusCode.BadRequest));
+								return conn.sendResponse(response.writeError(request, HttpStatusCode.BadRequest));
 						}
 						break;
 					case "GameList.asp":
@@ -140,7 +140,7 @@ class WormNETHttpServer
 					case "UpdatePlayerInfo.asp":
 						break;
 					default:
-						return conn.sendResponse(response.writeError(HttpStatusCode.NotFound));
+						return conn.sendResponse(response.writeError(request, HttpStatusCode.NotFound));
 				}
 				return conn.sendResponse(response.serveData(html));
 			}
@@ -148,8 +148,8 @@ class WormNETHttpServer
 				return conn.sendResponse(response.serveFile(pathStr[1..$], "wwwroot/"));
 		}
 		catch (FileException e)
-			return conn.sendResponse(response.writeError(HttpStatusCode.NotFound           , e.msg));
+			return conn.sendResponse(response.writeError(request, HttpStatusCode.NotFound           , e.msg));
 		catch (Exception e)
-			return conn.sendResponse(response.writeError(HttpStatusCode.InternalServerError, e.toString));
+			return conn.sendResponse(response.writeError(request, HttpStatusCode.InternalServerError, e.toString));
 	}
 }

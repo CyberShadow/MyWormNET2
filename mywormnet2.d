@@ -53,7 +53,7 @@ class WormNETServer
 
 void main()
 {
-	configuration = File("mywormnet2.ini").byLine.parseStructuredIni!Configuration;
+	configuration = File("mywormnet2.ini").byLine.parseIni!Configuration;
 
 	auto server = new WormNETServer();
 	server.log = createLogger("MyWormNET2");
